@@ -1,43 +1,75 @@
-# qa-devops-ai-challenge
-Proyecto de automatización QA con DevOps, CI/CD e Inteligencia Artificial.
 # QA DevOps AI Challenge
 
 ## Objetivo
 
-Implementar un flujo de calidad para una aplicación web utilizando buenas prácticas de QA, Git, GitHub Actions, pruebas automatizadas, performance, accesibilidad e Inteligencia Artificial.
+Construir un flujo completo de calidad para una aplicación web o API aplicando buenas prácticas de control de versiones, automatización, integración continua (CI/CD), quality gates, pruebas de rendimiento, accesibilidad y análisis asistido con inteligencia artificial.
 
-## Herramientas
+## Estructura del proyecto
+
+```
+qa-devops-ai-challenge/
+│
+├── tests/
+│   ├── api/
+│   └── ui/
+│
+├── performance/
+│   ├── k6/
+│   └── jmeter/
+│
+├── docs/
+├── evidences/
+├── .github/
+│   └── workflows/
+│
+├── README.md
+└── .gitignore
+```
+
+## Herramientas utilizadas
 
 - Git
 - GitHub
 - GitHub Actions
-- Cypress
+- Cypress (UI)
+- Postman/Newman (API)
 - k6
+- Apache JMeter
 - axe DevTools
 - ChatGPT
 
-## Estructura
+## Cómo ejecutar las pruebas
 
-- tests/
-- docs/
-- .github/
-
-## Ejecución
-
-1. Clonar el repositorio
+### Clonar el repositorio
 
 ```bash
 git clone https://github.com/Rocio-1221/qa-devops-ai-challenge.git
 ```
 
-2. Instalar dependencias
+### Entrar al proyecto
+
+```bash
+cd qa-devops-ai-challenge
+```
+
+### Instalar dependencias
 
 ```bash
 npm install
 ```
 
-3. Ejecutar pruebas
+### Ejecutar pruebas UI
 
 ```bash
-npm test
+npm run test
 ```
+
+### Ejecutar pruebas de performance
+
+```bash
+k6 run performance/k6/load-test.js
+```
+
+## Autor
+
+Rocío Gutiérrez
