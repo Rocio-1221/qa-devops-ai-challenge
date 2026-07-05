@@ -128,3 +128,61 @@ Se cumplieron los criterios de:
 - Coherencia
 
 **Resultado final:** ✅ APROBADO
+
+---
+
+# Uso responsable de IA
+
+## Objetivo
+
+La Inteligencia Artificial se utilizó como herramienta de apoyo para mejorar la productividad durante el desarrollo del proyecto, sin reemplazar el análisis ni las decisiones del analista QA.
+
+## ¿Qué se generó con IA?
+
+Se utilizó IA para apoyar las siguientes actividades:
+
+- Generación y mejora del README del proyecto.
+- Elaboración del Plan de Pruebas (`test-plan.md`).
+- Definición de Quality Gates.
+- Creación de la matriz de pruebas para el asistente de IA.
+- Generación de ejemplos de scripts para K6.
+- Elaboración de la documentación de resultados de Performance.
+- Redacción de la documentación técnica del proyecto.
+- Generación de mensajes de commit más descriptivos.
+
+## ¿Qué fue revisado manualmente?
+
+Antes de incorporar el contenido al proyecto se revisó manualmente:
+
+- La estructura del repositorio.
+- La configuración del workflow de GitHub Actions.
+- El script de K6.
+- El escenario de JMeter.
+- La documentación generada.
+- Los comandos de Git utilizados.
+- Los resultados obtenidos durante las pruebas.
+
+## ¿Qué ajustes se realizaron?
+
+Se realizaron ajustes para adaptar el contenido generado por IA al proyecto QA Store:
+
+- Se modificó la documentación para ajustarla al escenario del reto.
+- Se adaptaron los nombres de archivos y carpetas.
+- Se personalizaron los Quality Gates.
+- Se ajustaron los ejemplos de pruebas de Performance.
+- Se revisó la terminología utilizada para mantener consistencia en todo el proyecto.
+
+## ¿Qué limitaciones se encontraron?
+
+Durante el uso de IA se identificaron las siguientes limitaciones:
+
+- Algunas respuestas fueron genéricas y requirieron adaptación al contexto del proyecto.
+- Los scripts generados debieron validarse antes de ejecutarse.
+- Las métricas de Performance no pueden inventarse y deben obtenerse mediante pruebas reales.
+- La IA no reemplaza la validación funcional ni el criterio profesional del analista QA.
+
+## Conclusión
+
+La Inteligencia Artificial fue utilizada como una herramienta de apoyo para acelerar la documentación, generar ejemplos y facilitar la preparación del proyecto.
+
+Todas las configuraciones, pruebas y resultados fueron revisados y ajustados manualmente antes de incorporarse al repositorio, siguiendo buenas prácticas de QA y un uso responsable de la IA.
