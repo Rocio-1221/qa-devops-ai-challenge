@@ -28,10 +28,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          
 
-      - name: 3. Instalación de dependencias
-        run: npm ci
+      - name: Instalar dependencias
+        run: |
+           if [ -f package.json ]; then
+           npm install
+           else
+           echo "No existe package.json. Se omite la instalación."
+        
 
       - name: 4. Ejecución de pruebas de contrato + reporte JUnit
         run: |
