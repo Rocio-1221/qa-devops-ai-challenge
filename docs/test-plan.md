@@ -1,94 +1,157 @@
-# Plan de Pruebas - QA DevOps AI Challenge
+# Plan de Pruebas — QA Store
 
-## Objetivo
+## 1. Objetivo
 
-Validar la calidad de la aplicación antes de integrar cambios a la rama principal (`main`), mediante pruebas automatizadas, controles de calidad y buenas prácticas DevSecOps.
+Definir el flujo de aseguramiento de calidad para **QA Store**, una aplicación web de comercio electrónico utilizada para validar buenas prácticas de automatización, integración continua y DevSecOps.
 
-## Alcance
+Los objetivos son:
 
-Las validaciones incluyen:
+1. Garantizar que ningún cambio se integre a la rama `main` sin cumplir los Quality Gates.
+2. Validar el correcto funcionamiento de la aplicación mediante pruebas automatizadas.
+3. Generar evidencias y reportes de ejecución como soporte del proceso de QA.
 
-- Pruebas funcionales UI.
-- Pruebas de API.
-- Pruebas de rendimiento (Performance).
-- Validaciones de accesibilidad.
-- Integración continua con GitHub Actions.
-- Generación de evidencias y reportes.
+---
 
-## Herramientas
+# 2. Alcance
 
-- Git y GitHub
-- GitHub Actions
-- Cypress (Pruebas UI)
-- Postman / Newman (Pruebas API)
-- k6 o Apache JMeter (Performance)
-- axe DevTools (Accesibilidad)
-- ChatGPT (Análisis y documentación)
+| Funcionalidad | Tipo de prueba |
+|---------------|----------------|
+| Inicio de sesión | Funcional |
+| Catálogo de productos | Funcional |
+| Visualización de productos | Funcional |
+| Agregar productos al carrito | Funcional |
+| Proceso de compra | Funcional |
+| Performance | k6 / JMeter |
+| Accesibilidad | axe DevTools |
+| Pipeline CI/CD | GitHub Actions |
+
+---
+
+# 3. Reglas de negocio
+
+Las validaciones se realizan sobre los siguientes criterios funcionales:
+
+- El usuario debe poder iniciar sesión con credenciales válidas.
+- Las credenciales inválidas deben mostrar un mensaje de error.
+- El catálogo debe cargar correctamente.
+- Los productos deben mostrar nombre, precio e imagen.
+- El usuario puede agregar productos al carrito.
+- El carrito debe actualizar la cantidad de productos.
+- El proceso de compra debe finalizar correctamente.
+
+---
+
+# 4. Tipos de prueba
+
+Se ejecutarán las siguientes pruebas:
+
+- Pruebas funcionales UI (Cypress)
+- Pruebas de API (si aplica)
+- Pruebas de Performance (k6)
+- Pruebas de Accesibilidad (axe DevTools)
+- Integración Continua mediante GitHub Actions
+- Validación de evidencias y reportes
+- Revisión asistida con Inteligencia Artificial
+
+---
+
+# 5. Estrategia de Automatización
+
+Cada Pull Request hacia la rama `main` ejecutará automáticamente el workflow **QA CI Pipeline**.
+
+El pipeline realizará las siguientes actividades:
+
+1. Checkout del repositorio.
+2. Instalación de dependencias.
+3. Ejecución de pruebas automatizadas.
+4. Generación de reportes.
+5. Publicación de artefactos.
+6. Ejecución de pruebas de performance.
+7. Validación de accesibilidad.
+8. Verificación de Quality Gates.
+
+---
+
+# 6. Evidencias
+
+Cada ejecución del pipeline generará:
+
+- Reporte HTML
+- Logs de ejecución
+- Capturas de pantalla
+- Videos de ejecución (cuando aplique)
+- Resultados de Performance
+- Resultados de Accesibilidad
+
+Los artefactos serán publicados automáticamente mediante GitHub Actions.
+
+---
+
+# 7. Criterios de Entrada y Salida
+
+## Entrada
+
+- Rama `feature/*` creada.
+- Pull Request abierto hacia `main`.
+- Código actualizado en GitHub.
+
+## Salida
+
+El Pull Request podrá aprobarse únicamente cuando todos los Quality Gates se encuentren en estado satisfactorio.
 
 ---
 
 # Quality Gates definidos
 
-Para aprobar un Pull Request se deben cumplir los siguientes criterios:
+Para aprobar un Pull Request hacia la rama `main`, todos los siguientes criterios deben cumplirse.
 
-## 1. Pruebas automatizadas
-
-- Todas las pruebas automatizadas deben ejecutarse correctamente.
-- No se permiten pruebas fallidas.
-
-**Criterio de aprobación:** 100% de pruebas exitosas.
-
----
-
-## 2. Performance
-
-- El porcentaje de errores debe ser menor al 1%.
-- El tiempo de respuesta promedio debe estar dentro del umbral definido para la aplicación.
-
-**Criterios de aprobación:**
-
-- Error Rate < 1%
-- Tiempo de respuesta promedio ≤ 1000 ms
+| # | Quality Gate | Criterio de aceptación | Verificación |
+|---|--------------|------------------------|--------------|
+| 1 | Pruebas automatizadas | 100% de las pruebas exitosas | GitHub Actions |
+| 2 | Performance | Error Rate menor al 1% | k6 / JMeter |
+| 3 | Tiempo de respuesta | Tiempo promedio menor a 1000 ms | k6 |
+| 4 | Accesibilidad | Sin errores críticos | axe DevTools |
+| 5 | Seguridad | No existen secretos expuestos | Revisión del repositorio |
+| 6 | Evidencias | Reportes y artefactos publicados | GitHub Actions |
 
 ---
 
-## 3. Seguridad (DevSecOps)
+## Justificación de los Quality Gates
 
-- No deben existir credenciales o secretos expuestos en el repositorio.
-- El código debe mantenerse libre de información sensible.
+### Pruebas automatizadas
 
-**Criterio de aprobación:**
+Garantizan que las funcionalidades críticas continúan funcionando correctamente antes de integrar cambios.
 
-- 0 secretos detectados.
+### Performance
 
----
+Permite verificar que la aplicación mantiene un rendimiento adecuado bajo carga.
 
-## 4. Evidencias
+### Accesibilidad
 
-Cada ejecución del pipeline debe generar evidencias como:
+Asegura que la aplicación cumple criterios básicos de accesibilidad para todos los usuarios.
 
-- Reportes HTML
-- Logs de ejecución
-- Capturas de pantalla (si aplica)
-- Resultados de pruebas de performance
-- Resultados de accesibilidad
+### Seguridad
 
-**Criterio de aprobación:**
+Evita la publicación accidental de credenciales, claves o información sensible dentro del repositorio.
 
-Todos los artefactos deben publicarse correctamente en GitHub Actions.
+### Evidencias
+
+Cada ejecución debe generar evidencia que permita analizar resultados y facilitar auditorías.
 
 ---
 
-## 5. Integración Continua
+# Visión DevSecOps
 
-El pipeline de GitHub Actions debe ejecutarse automáticamente para cada Pull Request y Push hacia la rama `main`.
+Este proyecto adopta un enfoque DevSecOps incorporando controles de calidad durante todo el ciclo de desarrollo.
 
-**Criterio de aprobación:**
+Las validaciones incluyen:
 
-Pipeline ejecutado sin errores.
+- Automatización de pruebas.
+- Integración Continua.
+- Generación automática de evidencias.
+- Validaciones de rendimiento.
+- Validaciones de accesibilidad.
+- Control de versiones mediante Git.
+- Uso de Inteligencia Artificial para análisis de resultados y documentación.
 
----
-
-## Resultado esperado
-
-Solo se permitirá integrar cambios a la rama `main` cuando todos los Quality Gates se cumplan satisfactoriamente.
+Solo cuando todos los controles anteriores sean satisfactorios se permitirá la integración del cambio hacia la rama `main`.
